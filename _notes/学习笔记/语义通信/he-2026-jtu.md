@@ -25,7 +25,7 @@ He 等，《Semantic Communication for Machines: A Joint Transmission and Unders
 
 ## 2. 槽名怎样引导注意力
 
-设 $o$ 为当前 GRU 输出，$h_i$ 为恢复出的第 $i$ 个位置的特征，$e_j$ 为词表里第 $j$ 个词元的嵌入。每次生成包含两个步骤：
+设 $o$ 为当前 GRU 输出，$h_i$ 为恢复出的第 $i$ 个位置的特征，$e_j$ 为词表里第 $j$ 个词元的嵌入。
 
 $$
 a_i = \frac{\exp(oW_1h_i)}{\sum_k \exp(oW_1h_k)},\qquad
