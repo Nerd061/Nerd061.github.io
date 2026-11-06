@@ -9,8 +9,8 @@
 }
 
 body {
-    --sky-image: url('../img/sky-background.jpg');
-    --sky-tile: 216.7vw;
+    --sky-image: url('../img/blue-background.jpg');
+    --sky-tile: calc(100vw * 16 / 9);
     --sky-start: calc(var(--sky-tile) * -.2);
 
     position: relative;
