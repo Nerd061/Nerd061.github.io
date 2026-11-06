@@ -9,13 +9,33 @@
 }
 
 body {
+    --sky-image: url('../img/sky-background.jpg');
+    --sky-tile: 216.7vw;
+    --sky-start: calc(var(--sky-tile) * -.2);
+
+    position: relative;
+    isolation: isolate;
     min-height: 100vh;
     margin: 0;
-    background-color: #fafafa;
-    background-image: radial-gradient(circle, rgb(34 38 42 / 11%) 0.7px, transparent 1px);
-    background-size: 15px 15px;
+    background: #506780 var(--sky-image) center var(--sky-start) / auto var(--sky-tile) repeat-y;
     color: #34383b;
     font: 16px/1.7 system-ui, "Microsoft YaHei", sans-serif;
+}
+
+@supports (mask-image: linear-gradient(#000, transparent)) {
+    body::before {
+        /* Shift a second copy by half a tile and blend it over each join. */
+        --sky-overlay-start: calc(var(--sky-start) - var(--sky-tile) / 2);
+
+        position: absolute;
+        z-index: -1;
+        inset: 0;
+        background: var(--sky-image) center var(--sky-overlay-start) / auto var(--sky-tile) repeat-y;
+        mask: linear-gradient(transparent 42%, #000 49% 51%, transparent 58%)
+            center var(--sky-overlay-start) / 100% var(--sky-tile) repeat-y;
+        pointer-events: none;
+        content: "";
+    }
 }
 
 a {
@@ -33,11 +53,12 @@ a {
 }
 
 .notes-heading a {
-    color: inherit;
+    color: #fff;
     font-size: clamp(40px, 5vw, 56px);
     font-weight: 800;
     line-height: 1.2;
     text-decoration: none;
+    text-shadow: 0 1px 4px rgb(19 32 48 / 65%);
 }
 
 .notes-reader .notes-description,
