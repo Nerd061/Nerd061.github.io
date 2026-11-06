@@ -9,31 +9,46 @@
 }
 
 body {
-    --sky-image: url('../img/blue-background.jpg');
-    --sky-tile: calc(100vw * 16 / 9);
-    --sky-start: calc(var(--sky-tile) * -.2);
-
     position: relative;
     isolation: isolate;
     min-height: 100vh;
     margin: 0;
-    background: #506780 var(--sky-image) center var(--sky-start) / auto var(--sky-tile) repeat-y;
+    background: #506780;
     color: #34383b;
     font: 16px/1.7 system-ui, "Microsoft YaHei", sans-serif;
 }
 
+.notes-background {
+    position: absolute;
+    z-index: -1;
+    inset: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+
+.notes-background-image {
+    --sky-image: url('../img/blue-background.jpg');
+    --sky-blur: clamp(8px, 1vw, 16px);
+    --sky-bleed: calc(var(--sky-blur) * 3);
+    --sky-tile: calc((100vw + var(--sky-bleed) * 2) * 16 / 9);
+    --sky-start: calc(var(--sky-tile) * -.2 + var(--sky-bleed));
+
+    position: absolute;
+    inset: calc(-1 * var(--sky-bleed));
+    background: var(--sky-image) center var(--sky-start) / auto var(--sky-tile) repeat-y;
+    filter: blur(var(--sky-blur));
+}
+
 @supports (mask-image: linear-gradient(#000, transparent)) {
-    body::before {
+    .notes-background-image::before {
         /* Shift a second copy by half a tile and blend it over each join. */
         --sky-overlay-start: calc(var(--sky-start) - var(--sky-tile) / 2);
 
         position: absolute;
-        z-index: -1;
         inset: 0;
         background: var(--sky-image) center var(--sky-overlay-start) / auto var(--sky-tile) repeat-y;
         mask: linear-gradient(transparent 42%, #000 49% 51%, transparent 58%)
             center var(--sky-overlay-start) / 100% var(--sky-tile) repeat-y;
-        pointer-events: none;
         content: "";
     }
 }
