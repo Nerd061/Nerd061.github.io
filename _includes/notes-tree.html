@@ -1,0 +1,23 @@
+{% assign entries = include.notes | group_by_exp: 'note', "note.relative_path | split: '/' | slice: include.depth, 1 | first" %}
+<ul>
+    {% for entry in entries %}
+    {% assign child_depth = include.depth | plus: 1 %}
+    {% assign source_parts = entry.items.first.relative_path | split: '/' %}
+    {% if source_parts.size > child_depth %}
+    {% assign entry_urls = entry.items | map: 'url' %}
+    <li>
+        <details{% if entry_urls contains page.url or forloop.first and include.depth == 1 and page.collection != 'notes' %} open{% endif %}>
+            <summary><span class="notes-folder-icon" aria-hidden="true"></span>{{ entry.name | escape }}</summary>
+            {% include notes-tree.html notes=entry.items depth=child_depth %}
+        </details>
+    </li>
+    {% else %}
+    {% assign note = entry.items.first %}
+    <li>
+        <a href="{{ note.url | relative_url }}"{% if note.url == page.url %} aria-current="page"{% endif %}>
+            <span class="notes-file-icon" aria-hidden="true"></span>{{ note.title | escape }}
+        </a>
+    </li>
+    {% endif %}
+    {% endfor %}
+</ul>

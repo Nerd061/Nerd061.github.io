@@ -1,0 +1,49 @@
+---
+layout: default
+---
+{% assign notes = site.notes | sort_natural: 'relative_path' %}
+<main class="notes-page container" lang="zh-CN">
+    <header class="notes-heading">
+        <a href="{{ '/notes/' | relative_url }}">学习笔记</a>
+        <p>按主题整理的学习记录与研究笔记。</p>
+    </header>
+
+    <div class="notes-workspace">
+        <aside class="notes-sidebar" aria-labelledby="notes-tree-heading">
+            <div class="notes-sidebar-inner">
+                <h2 id="notes-tree-heading">笔记目录 <span>{{ notes.size }}</span></h2>
+                {% if notes.size > 0 %}
+                <nav class="notes-tree" aria-label="按文件夹浏览笔记">
+                    {% include notes-tree.html notes=notes depth=1 %}
+                </nav>
+                {% else %}
+                <p class="notes-tree-empty">暂无笔记</p>
+                {% endif %}
+            </div>
+        </aside>
+
+        {% if page.collection == 'notes' %}
+        <article class="notes-reader">
+            <h1>{{ page.title | escape }}</h1>
+            {% if page.description %}<p class="notes-description">{{ page.description | escape }}</p>{% endif %}
+            <div class="post-container">
+                {{ content }}
+            </div>
+        </article>
+        {% else %}
+        <section class="notes-reader notes-start">
+            {% if notes.size > 0 %}
+            <h1>选择一篇笔记</h1>
+            <p>展开目录中的文件夹，点击笔记标题即可在这里阅读。</p>
+            {% else %}
+            <h1>笔记还在整理中</h1>
+            <p>新笔记发布后，会按主题出现在目录里。</p>
+            {% endif %}
+        </section>
+        {% endif %}
+    </div>
+</main>
+
+{% if page.mathjax %}
+{% include mathjax_support.html %}
+{% endif %}
