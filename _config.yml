@@ -1,98 +1,27 @@
-# Site settings
 title: Nerd061 Blog
-SEOTitle: Nerd061的博客
-header-img: img/home-bg.jpg
-email: 12413302@mail.sustech.edu.cn
 description: "这里是 @Nerd061 的个人网站，用于记录个人科研内容"
-keyword: "Nerd061, 语义通信"
-url: "https://Nerd061.github.io" # your host, for absolute URL
-baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
+url: "https://Nerd061.github.io"
+baseurl: ""
+lang: zh-CN
 
+notes_folders:
+  - 网站指南
+  - 学习笔记
 
-# Publish posts or collection documents with a future date.
-future: true
-
-
-# SNS settings
-RSS: false
-github_username: Nerd061
-
-
-# Build settings
-# from 2016, 'pygments' is unsupported on GitHub Pages. Use 'rouge' for highlighting instead.
-highlighter: rouge
-permalink: pretty
-paginate: 10
-exclude:
-  [
-    "less",
-    "node_modules",
-    "Gruntfile.js",
-    "package.json",
-    "README.md",
-    "README.zh.md",
-  ]
-anchorjs: true # if you want to customize anchor. check out line:181 of `post.html`
-# If you have timezone issue (e.g. #68) in China, uncomment to use this:
-#timezone: CN
-
-
-# Gems
-# from PR#40, to support local preview for Jekyll 3.0
-# make sure you have this gem installed
-# `$ gem install jekyll-paginate`
-plugins: [jekyll-paginate]
-
-
-# Notes workspace
 collections:
   notes:
     output: true
     permalink: /notes/:path/
+
 defaults:
   - scope:
       path: ""
       type: notes
     values:
       layout: notes
-      nav-style: invert
-      no-catalog: true
 
-
-# Markdown settings
-# replace redcarpet to kramdown,
-# although redcarpet can auto highlight code, the lack of header-id make the catalog impossible, so I switch to kramdown
-# document: http://jekyllrb.com/docs/configuration/#kramdown
 markdown: kramdown
 kramdown:
-  input: GFM # use Github Flavored Markdown !important
-  syntax_highlighter_opts:
-    span:
-      line_numbers: false
-    block:
-      line_numbers: true
-      start_line: 1
-
-
-# Disqus settings
-# disqus_username: your-disqus-shortname
-
-
-# Netease settings
-netease_comment: false
-
-
-# Analytics settings
-# Baidu Analytics
-# ba_track_id: [your track id]
-
-
-# Google Analytics
-# ga_track_id: your-tracking-id
-# ga_domain: your-domain
-
-
-# Sidebar settings
-sidebar: true # whether or not using Sidebar.
-sidebar-about-description: "记录学习笔记、研究进展和个人项目。"
-sidebar-avatar: https://github.com/Nerd061.png
+  input: GFM
+exclude:
+  - LICENSE

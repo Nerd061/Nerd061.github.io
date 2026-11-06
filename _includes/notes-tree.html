@@ -1,4 +1,7 @@
 {% assign entries = include.notes | group_by_exp: 'note', "note.relative_path | split: '/' | slice: include.depth, 1 | first" %}
+{% if include.depth == 1 %}
+{% assign top_level_entries = entries | map: 'name' %}
+{% endif %}
 <ul>
     {% for entry in entries %}
     {% assign child_depth = include.depth | plus: 1 %}
@@ -14,10 +17,22 @@
     {% else %}
     {% assign note = entry.items.first %}
     <li>
-        <a href="{{ note.url | relative_url }}"{% if note.url == page.url %} aria-current="page"{% endif %}>
+        <a href="{{ note.url | relative_url | escape }}"{% if note.url == page.url %} aria-current="page"{% endif %}>
             <span class="notes-file-icon" aria-hidden="true"></span>{{ note.title | escape }}
         </a>
     </li>
     {% endif %}
     {% endfor %}
+    {% if include.depth == 1 %}
+    {% for folder in site.notes_folders %}
+    {% unless top_level_entries contains folder %}
+    <li>
+        <details>
+            <summary><span class="notes-folder-icon" aria-hidden="true"></span>{{ folder | escape }}</summary>
+            <p class="notes-tree-empty">暂无笔记</p>
+        </details>
+    </li>
+    {% endunless %}
+    {% endfor %}
+    {% endif %}
 </ul>
