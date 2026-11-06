@@ -1,0 +1,50 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 780 350" role="img" aria-labelledby="title desc">
+  <title id="title">JTU 的发送链路和接收端两条解析路径</title>
+  <desc id="desc">发送端把命令编码为信道符号。接收端恢复特征后，用 CLS 分类意图，并用槽名、CLS 和词元特征生成槽值。</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="6" markerHeight="6" orient="auto">
+      <path d="M0 0 8 4 0 8Z" fill="#64717b"/>
+    </marker>
+    <style>
+      text { font-family: system-ui, "Microsoft YaHei", sans-serif; fill: #26343b; }
+      .label { font-size: 19px; font-weight: 700; }
+      .detail { font-size: 15px; fill: #4d5c65; }
+      .phase { font-size: 14px; font-weight: 700; fill: #006b81; }
+      .box { fill: #fff; stroke: #ccd8de; stroke-width: 1.5; }
+      .result { fill: #edf6f8; stroke: #b8d3db; stroke-width: 1.5; }
+      .flow { fill: none; stroke: #64717b; stroke-width: 2; marker-end: url(#arrow); }
+    </style>
+  </defs>
+  <rect x="1" y="1" width="778" height="348" rx="16" fill="#f6f8f9" stroke="#e1e7ea"/>
+  <text x="24" y="35" class="phase">发送端</text>
+  <text x="756" y="35" text-anchor="end" class="phase">接收端</text>
+  <g text-anchor="middle">
+    <rect class="box" x="24" y="51" width="158" height="77" rx="8"/>
+    <text class="label" x="103" y="83">自然语言指令</text>
+    <text class="detail" x="103" y="108">分词，加入 [CLS]</text>
+    <rect class="box" x="211" y="51" width="158" height="77" rx="8"/>
+    <text class="label" x="290" y="83">BERT 编码</text>
+    <text class="detail" x="290" y="108">句级与词元特征</text>
+    <rect class="box" x="398" y="51" width="158" height="77" rx="8"/>
+    <text class="label" x="477" y="83">信道编码与传输</text>
+    <text class="detail" x="477" y="108">压缩、归一化、I/Q</text>
+    <rect class="box" x="585" y="51" width="171" height="77" rx="8"/>
+    <text class="label" x="670" y="83">恢复语义特征</text>
+    <text class="detail" x="670" y="108">单层全连接解码器</text>
+  </g>
+  <path class="flow" d="M185 90h21"/>
+  <path class="flow" d="M372 90h21"/>
+  <path class="flow" d="M559 90h21"/>
+  <path d="M670 130v34H176" fill="none" stroke="#64717b" stroke-width="2"/>
+  <path class="flow" d="M176 164v34"/>
+  <path class="flow" d="M542 164v34"/>
+  <text x="24" y="188" class="phase">结构化输出</text>
+  <rect class="result" x="24" y="204" width="304" height="119" rx="10"/>
+  <text class="label" x="44" y="236">意图分类</text>
+  <text class="detail" x="44" y="265">[CLS] → 全连接层 → Softmax</text>
+  <text class="detail" x="44" y="292">输出指令类别</text>
+  <rect class="result" x="350" y="204" width="406" height="119" rx="10"/>
+  <text class="label" x="370" y="236">按槽名生成槽值</text>
+  <text class="detail" x="370" y="265">[CLS] 初始化 GRU，槽名提供第一步输入</text>
+  <text class="detail" x="370" y="292">混合注意力 → 词表打分 → 逐步生成</text>
+</svg>
