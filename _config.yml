@@ -1,11 +1,11 @@
 # Site settings
-title: Hux Blog
-SEOTitle: 黄玄的博客 | Hux Blog
+title: Nerd061 Blog
+SEOTitle: Nerd061的博客
 header-img: img/home-bg.jpg
-email: huxpro@gmail.com
-description: "这里是 @Hux黄玄 的个人博客，与你一起发现更大的世界 | 要做一个有 swag 的程序员"
-keyword: "黄玄, Hux黄玄, Hux, 鬼栈, huxpro, @huxpro, 黄玄的博客, Hux Blog, 博客, 个人网站, 互联网, Web, JavaScript, React, React Native, 前端, 设计"
-url: "https://huxpro.github.io" # your host, for absolute URL
+email: 12413302@mail.sustech.edu.cn
+description: "这里是 @Nerd061 的个人网站，用于记录个人科研内容"
+keyword: "Nerd061, 语义通信"
+url: "https://Nerd061.github.io" # your host, for absolute URL
 baseurl: "" # for example, '/blog' if your blog hosted on 'host/blog'
 
 
