@@ -137,6 +137,25 @@ a {
     transform: translateY(-2px) rotate(45deg);
 }
 
+@media (prefers-reduced-motion: no-preference) {
+    .notes-tree summary::before {
+        transition: transform 240ms ease-in-out;
+    }
+
+    @supports selector(::details-content) and (transition-behavior: allow-discrete) {
+        .notes-tree details::details-content {
+            display: grid;
+            grid-template-rows: minmax(0, 0fr);
+            overflow: clip;
+            transition: grid-template-rows 240ms ease-in-out, content-visibility 240ms allow-discrete;
+        }
+
+        .notes-tree details[open]::details-content {
+            grid-template-rows: minmax(0, 1fr);
+        }
+    }
+}
+
 .notes-folder-icon,
 .notes-file-icon {
     display: inline-block;
