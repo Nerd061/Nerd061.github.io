@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>{{ page.title | default: '学习笔记' | escape }} · {{ site.title | escape }}</title>
+    <title>{% if page.title %}{{ page.title | escape }} · {% endif %}{{ site.title | escape }}</title>
     <meta name="description" content="{{ page.description | default: site.description | escape }}">
     <link rel="canonical" href="{{ page.url | absolute_url }}">
     <link rel="stylesheet" href="{{ '/css/notes.css' | relative_url }}">
@@ -18,7 +18,7 @@
     {% assign notes = site.notes | sort_natural: 'relative_path' %}
     <main class="notes-page">
         <header class="notes-heading">
-            <a href="{{ '/notes/' | relative_url }}">学习笔记</a>
+            <a href="{{ '/notes/' | relative_url }}">{{ site.title | escape }}</a>
         </header>
 
         <div class="notes-workspace">
@@ -51,5 +51,11 @@
             {% endif %}
         </div>
     </main>
+    {% if page.collection == 'notes' %}
+    <dialog class="image-preview" aria-label="图片预览">
+        <button type="button" aria-label="关闭大图" autofocus>×</button>
+    </dialog>
+    <script defer src="{{ '/js/image-preview.js' | relative_url }}"></script>
+    {% endif %}
 </body>
 </html>

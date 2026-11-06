@@ -13,7 +13,7 @@ He 等，《Semantic Communication for Machines: A Joint Transmission and Unders
 ## 1. 一条链路，两条解析路径
 
 <figure>
-  <a href="{{ '/assets/notes/jtu-2026/receiver-flow.svg' | relative_url }}"><img src="{{ '/assets/notes/jtu-2026/receiver-flow.svg' | relative_url }}" width="780" height="350" alt="自然语言经 BERT 和信道编解码成为接收特征，再分为 CLS 意图分类与按槽名生成槽值两条路径"></a>
+  <a href="{{ '/assets/notes/jtu-2026/receiver-flow.svg' | relative_url }}" data-image-preview><img src="{{ '/assets/notes/jtu-2026/receiver-flow.svg' | relative_url }}" width="780" height="350" alt="自然语言经 BERT 和信道编解码成为接收特征，再分为 CLS 意图分类与按槽名生成槽值两条路径"></a>
   <figcaption>图 1　按接收端的信息流自绘，依据原文图 3 和算法 2（pp. 7385、7387）。点击可查看大图。</figcaption>
 </figure>
 

@@ -58,4 +58,4 @@ git commit -m "添加信号与系统笔记"
 git push origin master
 ```
 
-推送后，在 [GitHub Actions](https://github.com/Nerd061/Nerd061.github.io/actions) 查看部署结果。成功后，打开 [学习笔记](https://nerd061.github.io/notes/)，点开新文章，并试一下图片、PDF 和下载链接。仓库与站点都是公开的，只提交可以公开分享的内容。
+推送后，在 [GitHub Actions](https://github.com/Nerd061/Nerd061.github.io/actions) 查看部署结果。成功后，打开 [Eric的笔记库](https://nerd061.github.io/notes/)，点开新文章，并试一下图片、PDF 和下载链接。仓库与站点都是公开的，只提交可以公开分享的内容。
