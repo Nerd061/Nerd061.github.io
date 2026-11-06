@@ -16,9 +16,6 @@
     {% endif %}
 </head>
 <body>
-    <div class="notes-background" aria-hidden="true">
-        <div class="notes-background-image"></div>
-    </div>
     {% assign notes = site.notes | sort_natural: 'relative_path' %}
     <main class="notes-page">
         <header class="notes-heading">
